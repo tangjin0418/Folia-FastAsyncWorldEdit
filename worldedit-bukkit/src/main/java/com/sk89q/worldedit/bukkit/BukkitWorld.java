@@ -365,11 +365,7 @@ public class BukkitWorld extends AbstractWorld {
         //FAWE start
         int X = pt.x() >> 4;
         int Z = pt.z() >> 4;
-        if (Fawe.isMainThread()) {
-            world.getChunkAt(X, Z);
-        } else if (PaperLib.isPaper()) {
-            PaperLib.getChunkAtAsync(world, X, Z, true);
-        }
+        PaperLib.getChunkAtAsync(world, X, Z, true);
         //FAWE end
     }
 

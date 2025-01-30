@@ -81,6 +81,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.enginehub.piston.CommandManager;
 import org.incendo.serverlib.ServerLib;
+import org.tjdev.util.tjpluginutil.spigot.FoliaUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -453,7 +454,7 @@ public class WorldEditPlugin extends JavaPlugin {
         if (config != null) {
             config.unload();
         }
-        this.getServer().getScheduler().cancelTasks(this);
+        FoliaUtil.scheduler.cancelTasks(this);
     }
 
     /**

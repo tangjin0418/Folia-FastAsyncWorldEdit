@@ -50,9 +50,7 @@ public class BukkitTaskManager extends TaskManager {
 
     @Override
     public void cancel(final int task) {
-        if (task != -1) {
-            Bukkit.getScheduler().cancelTask(task);
-        }
+        throw new UnsupportedOperationException();
     }
 
 }

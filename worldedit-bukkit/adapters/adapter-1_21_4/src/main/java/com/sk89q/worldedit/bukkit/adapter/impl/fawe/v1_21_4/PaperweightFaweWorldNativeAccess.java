@@ -34,6 +34,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class PaperweightFaweWorldNativeAccess implements WorldNativeAccess<LevelChunk,
         net.minecraft.world.level.block.state.BlockState, BlockPos> {
@@ -50,7 +51,7 @@ public class PaperweightFaweWorldNativeAccess implements WorldNativeAccess<Level
     };
     private final PaperweightFaweAdapter paperweightFaweAdapter;
     private final WeakReference<Level> level;
-    private final AtomicInteger lastTick;
+    private final AtomicLong lastTick;
     private final Set<CachedChange> cachedChanges = new HashSet<>();
     private final Set<IntPair> cachedChunksToSend = new HashSet<>();
     private SideEffectSet sideEffectSet;
@@ -60,7 +61,7 @@ public class PaperweightFaweWorldNativeAccess implements WorldNativeAccess<Level
         this.level = level;
         // Use the actual tick as minecraft-defined so we don't try to force blocks into the world when the server's already lagging.
         //  - With the caveat that we don't want to have too many cached changed (1024) so we'd flush those at 1024 anyway.
-        this.lastTick = new AtomicInteger(MinecraftServer.currentTick);
+        this.lastTick = new AtomicLong(System.currentTimeMillis() / 50);
     }
 
     private Level getLevel() {
@@ -96,7 +97,7 @@ public class PaperweightFaweWorldNativeAccess implements WorldNativeAccess<Level
             LevelChunk levelChunk, BlockPos blockPos,
             net.minecraft.world.level.block.state.BlockState blockState
     ) {
-        int currentTick = MinecraftServer.currentTick;
+        long currentTick = System.currentTimeMillis() / 50;
         if (Fawe.isMainThread()) {
             return levelChunk.setBlockState(blockPos, blockState,
                     this.sideEffectSet != null && this.sideEffectSet.shouldApply(SideEffect.UPDATE)

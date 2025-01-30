@@ -53,6 +53,8 @@ import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
 import org.enginehub.piston.CommandManager;
+import org.tjdev.util.tjpluginutil.spigot.FoliaUtil;
+import org.tjdev.util.tjpluginutil.spigot.scheduler.universalscheduler.scheduling.tasks.MyScheduledTask;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -133,9 +135,11 @@ public class BukkitServerInterface extends AbstractPlatform implements MultiUser
         plugin.loadConfiguration();
     }
 
+    public MyScheduledTask THE_ONLY_TASK;
     @Override
     public int schedule(long delay, long period, Runnable task) {
-        return Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, task, delay, period);
+        THE_ONLY_TASK = FoliaUtil.scheduler.runTaskTimer(plugin, task, delay, period);
+        return 0;
     }
 
     @Override

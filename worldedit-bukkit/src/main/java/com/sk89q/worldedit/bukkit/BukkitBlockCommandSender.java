@@ -33,6 +33,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.BlockCommandSender;
+import org.tjdev.util.tjpluginutil.spigot.FoliaUtil;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
@@ -196,8 +197,7 @@ public class BukkitBlockCommandSender extends AbstractCommandBlockActor {
                     updateActive();
                 } else {
                     // we should update it eventually
-                    Bukkit.getScheduler().callSyncMethod(
-                            plugin,
+                    FoliaUtil.scheduler.callSyncMethod(
                             () -> {
                                 updateActive();
                                 return null;
