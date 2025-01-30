@@ -232,3 +232,5 @@ permissions:
       voxelsniper.brush.warp: true
       voxelsniper.goto: true
       voxelsniper.sniper: true
+
+folia-supported: true

@@ -19,6 +19,7 @@ plotsquared = "7.4.1"
 
 # Third party
 bstats = "3.1.0"
+tjpluginutil = "1.0-SNAPSHOT"
 sparsebitset = "1.3"
 parallelgzip = "1.0.5"
 adventure = "4.18.0"
@@ -77,6 +78,7 @@ plotSquaredBukkit = { group = "com.intellectualsites.plotsquared", name = "plots
 # Third Party
 bstatsBase = { group = "org.bstats", name = "bstats-base", version.ref = "bstats" }
 bstatsBukkit = { group = "org.bstats", name = "bstats-bukkit", version.ref = "bstats" }
+tjpluginutil = { group = "org.tjdev.util.tjpluginutil", name = "spigot", version.ref = "tjpluginutil" }
 sparsebitset = { group = "com.zaxxer", name = "SparseBitSet", version.ref = "sparsebitset" }
 parallelgzip = { group = "org.anarres", name = "parallelgzip", version.ref = "parallelgzip" }
 truezip = { group = "de.schlichtherle", name = "truezip", version.ref = "truezip" }

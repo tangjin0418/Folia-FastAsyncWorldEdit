@@ -8,6 +8,7 @@ applyPaperweightAdapterConfiguration()
 
 repositories {
     gradlePluginPortal()
+    mavenLocal()
 }
 
 dependencies {

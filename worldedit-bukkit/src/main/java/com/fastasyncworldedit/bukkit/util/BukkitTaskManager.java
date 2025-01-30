@@ -3,6 +3,8 @@ package com.fastasyncworldedit.bukkit.util;
 import com.fastasyncworldedit.core.util.TaskManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
+import org.tjdev.util.tjpluginutil.spigot.FoliaUtil;
+import org.tjdev.util.tjpluginutil.spigot.scheduler.universalscheduler.scheduling.tasks.MyScheduledTask;
 
 import javax.annotation.Nonnull;
 
@@ -16,32 +18,34 @@ public class BukkitTaskManager extends TaskManager {
 
     @Override
     public int repeat(@Nonnull final Runnable runnable, final int interval) {
-        return this.plugin.getServer().getScheduler().scheduleSyncRepeatingTask(this.plugin, runnable, interval, interval);
+        FoliaUtil.scheduler.scheduleSyncRepeatingTask(runnable, interval, interval);
+        return -1;
     }
 
     @Override
     public int repeatAsync(@Nonnull final Runnable runnable, final int interval) {
-        return this.plugin.getServer().getScheduler().scheduleAsyncRepeatingTask(this.plugin, runnable, interval, interval);
+        FoliaUtil.scheduler.runTaskTimerAsynchronously(runnable, interval, interval);
+        return -1;
     }
 
     @Override
     public void async(@Nonnull final Runnable runnable) {
-        this.plugin.getServer().getScheduler().runTaskAsynchronously(this.plugin, runnable).getTaskId();
+        FoliaUtil.scheduler.runTaskAsynchronously(runnable);
     }
 
     @Override
     public void task(@Nonnull final Runnable runnable) {
-        this.plugin.getServer().getScheduler().runTask(this.plugin, runnable).getTaskId();
+        FoliaUtil.scheduler.runTask(runnable);
     }
 
     @Override
     public void later(@Nonnull final Runnable runnable, final int delay) {
-        this.plugin.getServer().getScheduler().runTaskLater(this.plugin, runnable, delay).getTaskId();
+        FoliaUtil.scheduler.runTaskLater(runnable, delay);
     }
 
     @Override
     public void laterAsync(@Nonnull final Runnable runnable, final int delay) {
-        this.plugin.getServer().getScheduler().runTaskLaterAsynchronously(this.plugin, runnable, delay);
+        FoliaUtil.scheduler.runTaskLaterAsynchronously(runnable, delay);
     }
 
     @Override

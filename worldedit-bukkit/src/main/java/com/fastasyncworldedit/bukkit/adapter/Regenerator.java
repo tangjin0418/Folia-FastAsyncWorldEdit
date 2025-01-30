@@ -19,6 +19,7 @@ import org.bukkit.generator.BiomeProvider;
 import org.bukkit.generator.WorldInfo;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.tjdev.util.tjpluginutil.spigot.FoliaUtil;
 
 import java.util.Collections;
 import java.util.List;
@@ -104,10 +105,10 @@ public abstract class Regenerator {
     private void copyToWorld() {
         createSource();
         final long timeoutPerTick = TimeUnit.MILLISECONDS.toNanos(10);
-        int taskId = TaskManager.taskManager().repeat(() -> {
+        var task = FoliaUtil.scheduler.scheduleSyncRepeatingTask(() -> {
             final long startTime = System.nanoTime();
             runTasks(() -> System.nanoTime() - startTime < timeoutPerTick);
-        }, 1);
+        },1, 1);
         //Setting Blocks
         boolean genbiomes = options.shouldRegenBiomes();
         boolean hasBiome = options.hasBiomeType();
@@ -126,7 +127,7 @@ public abstract class Regenerator {
             });
         }
         target.setBlocks(region, pattern);
-        TaskManager.taskManager().cancel(taskId);
+        task.cancel();
     }
 
     private abstract class ChunkwisePattern implements Pattern {

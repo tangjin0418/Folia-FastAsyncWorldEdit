@@ -39,6 +39,7 @@ repositories {
     }
     maven("https://s01.oss.sonatype.org/content/repositories/snapshots/") // TODO Remove when 4.17.0 is released
     flatDir { dir(File("src/main/resources")) }
+    mavenLocal()
 }
 
 val localImplementation = configurations.create("localImplementation") {
@@ -122,6 +123,7 @@ dependencies {
     api(libs.parallelgzip) { isTransitive = false }
     compileOnly(libs.adventureApi)
     compileOnlyApi(libs.checkerqual)
+    implementation(libs.tjpluginutil) { isTransitive = false }
 
     // Tests
     testImplementation(libs.mockito)
@@ -194,6 +196,9 @@ tasks.withType<ShadowJar>().configureEach {
         // ZSTD does not work if relocated. https://github.com/luben/zstd-jni/issues/189 Use not latest as it can be difficult
         // to obtain latest ZSTD lib
         include(dependency("com.github.luben:zstd-jni:1.4.8-1"))
+        relocate("org.tjdev.util","org.tjdev.modified.fawe.lib") {
+            include(dependency("org.tjdev.util.tjpluginutil:"))
+        }
         relocate("org.bstats", "com.sk89q.worldedit.bstats") {
             include(dependency("org.bstats:"))
         }
