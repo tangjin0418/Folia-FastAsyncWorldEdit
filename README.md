@@ -1,16 +1,22 @@
-# DISCLAIMER
-## This version is very unstable even can cause crash, the following issue is waiting for fix:
-- ## [crash] //regen 
-- ## //copy (with -e flag / entities)
-- ## // (superpickaxe)
-
-## Only sure that basic copy and set is working.
-## DO NOT USE IN PRODUCTION ENVIRONMENT
-
 # FastAsyncWorldEdit
 [![Join us on Discord](https://img.shields.io/discord/268444645527126017.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/intellectualsites)
 [![bStats Servers](https://img.shields.io/bstats/servers/1403)](https://bstats.org/plugin/bukkit/FastAsyncWorldEdit/1403)
 [![Crowdin](https://badges.crowdin.net/e/4a5819fae3fd88234a8ea13bfbb072bb/localized.svg)](https://intellectualsites.crowdin.com/fastasyncworldedit)
+
+## DISCLAIMER - FOLIA
+## <ins>DO NOT USE IN PRODUCTION ENVIRONMENT, ONLY FOR TEST SERVER / BUILD SERVER.</ins>
+### This version is very unstable that can even cause crash, broken commands:
+- ### regen [will crash]  
+- ### commands with -e flag (entities)
+- ### superpickaxe
+
+## Tested, basic commands:
+- ### copy
+- ### paste
+- ### set 
+- ### replace
+
+<hr />
 
 ## What is FAWE and why should I use it?
 
